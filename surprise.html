@@ -130,7 +130,35 @@
   user-select: none;
 }
 
+.music-button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
 
+#play-song-btn {
+  background-color: #d6336c;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+#play-song-btn:hover {
+  background-color: #c2185b;
+}
+
+@media (max-width: 600px) {
+  #play-song-btn {
+    font-size: 0.95rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
 
 
     @keyframes floatHeart {
@@ -148,28 +176,10 @@
   </style>
 </head>
 <body>
-<audio id="bg-music" autoplay loop>
+<audio id="bg-music"  loop>
   <source src="Bebo-Main-Bebo.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
-
-<button onclick="document.getElementById('bg-music').play()" style="
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: pink;
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  box-shadow: 0 0 8px rgba(255, 105, 180, 0.5);
-  z-index: 1000;
-">
-  🎵 Play Music
-</button>
-
 
 
   <div class="floating-msg">
@@ -180,6 +190,9 @@
   <div class="hint-box">
     Tap on each picture to reveal a sweet message! 💌
   </div>
+<div class="music-button-wrapper">
+  <button id="play-song-btn">🎵 Play Song</button>
+</div>
 
 
   <div class="image-container">
@@ -297,6 +310,40 @@
     };
     document.body.addEventListener('click', playMusic, { once: true });
   });
+
+  window.addEventListener('DOMContentLoaded', () => {
+  const music = document.getElementById("bg-music");
+  const playBtn = document.getElementById("play-song-btn");
+
+  playBtn.addEventListener("click", () => {
+    if (music.paused) {
+      music.play().then(() => {
+        playBtn.textContent = "⏸️ Pause Song";
+      }).catch((err) => {
+        console.log("Playback error:", err);
+      });
+    } else {
+      music.pause();
+      playBtn.textContent = "🎵 Play Song";
+    }
+  });
+});
+
+
+  const music = document.getElementById("bg-music");
+  const playBtn = document.getElementById("play-song-btn");
+
+  playBtn.addEventListener("click", () => {
+    if (music.paused) {
+      music.play();
+      playBtn.textContent = "⏸️ Pause Song";
+    } else {
+      music.pause();
+      playBtn.textContent = "🎵 Play Song";
+    }
+  });
+
+
 
   </script>
 </body>
