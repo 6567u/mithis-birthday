@@ -238,7 +238,8 @@
   const music = document.getElementById('birthdayMusic');
   music.pause();
   music.currentTime = 0; // Optional: restart from beginning if user comes back
-  window.open('surprise.html', '_blank');
+ window.location.href = "surprise.html";
+
 }
 
 document.getElementById("surpriseBtn").addEventListener("click", () => {
@@ -251,8 +252,29 @@ document.getElementById("surpriseBtn").addEventListener("click", () => {
   }
 
   // Now open the surprise page
+ window.location.href = "surprise.html";
+
+});
+
+document.getElementById("surpriseBtn").addEventListener("click", (event) => {
+  event.preventDefault(); // stop any default link behavior
+
+  const music = document.getElementById("birthdayMusic");
+
+  // Try pausing safely
+  try {
+    if (!music.paused) {
+      music.pause();
+      music.currentTime = 0;
+    }
+  } catch (err) {
+    console.log("Could not pause music:", err);
+  }
+
+  // Open the surprise page in new tab
   window.open("surprise.html", "_blank");
 });
+
 </script>
 
 </body>
