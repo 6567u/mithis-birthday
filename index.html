@@ -155,7 +155,7 @@
     <p>Ek din aayega jab yeh distances sirf kahani ban jaayenge. Tab main tumhara haath pakadke, aankhon mein aankhon daalke yeh sab keh paunga... bina kisi screen ke beech mein. ❤️</p>
   </div>
 
-  <button class="surprise-button" onclick="stopMusicAndOpenSurprise()">Click for a Surprise 🎁</button>
+  <button class="surprise-button" id="surpriseBtn">Click for a Surprise 🎁</button>
 </div>
 
 <script>
@@ -241,6 +241,18 @@
   window.open('surprise.html', '_blank');
 }
 
+document.getElementById("surpriseBtn").addEventListener("click", () => {
+  const music = document.getElementById("birthdayMusic");
+
+  // Stop the music
+  if (!music.paused) {
+    music.pause();
+    music.currentTime = 0;
+  }
+
+  // Now open the surprise page
+  window.open("surprise.html", "_blank");
+});
 </script>
 
 </body>
