@@ -6,174 +6,210 @@
   <title>Surprise for Bebo 🎁</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      background-color: #fff0f5;
-      overflow-x: hidden;
-      overflow-y: auto;
-      font-family: 'Poppins', sans-serif;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      min-height: 100vh;
-      padding: 2rem 1rem;
-    }
+  body {
+    margin: 0;
+    background-color: #fff0f5;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+  }
 
+  .floating-msg {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    color: #d6336c;
+    animation: floatText 4s ease-in-out infinite alternate;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 30px;
+    z-index: 10;
+  }
+
+  @keyframes floatText {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
+  }
+
+  .hint-box {
+    background: #fff8fc;
+    border-radius: 30px;
+    padding: 0.8rem 1.2rem;
+    color: #d6336c;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    box-shadow: 0 0 12px rgba(255, 105, 180, 0.3);
+    border: 2px dashed pink;
+    position: relative;
+    max-width: 90%;
+  }
+
+  .hint-box::before {
+    content: "☁️";
+    font-size: 1.2rem;
+    position: absolute;
+    left: -20px;
+    top: -10px;
+  }
+
+  .image-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    z-index: 5;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .image-wrapper {
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .image-wrapper:hover {
+    transform: scale(1.05);
+  }
+
+  .sweet-note {
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 192, 203, 0.95);
+    color: #800040;
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .image-wrapper:hover .sweet-note {
+    opacity: 1;
+  }
+
+  .floating-img {
+    width: 80vw;
+    max-width: 260px;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.4);
+    animation: floatImg 6s ease-in-out infinite alternate;
+  }
+
+  @keyframes floatImg {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-20px) rotate(1deg); }
+  }
+
+  .heart {
+    position: absolute;
+    font-size: 14px;
+    color: pink;
+    animation: floatHeart 10s linear infinite;
+  }
+
+  .static-heart {
+    position: absolute;
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .music-button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    width: 100%;
+  }
+
+  #play-song-btn {
+    background-color: #d6336c;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  #play-song-btn:hover {
+    background-color: #c2185b;
+  }
+
+  @keyframes floatHeart {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+  }
+
+  @media (max-width: 768px) {
     .floating-msg {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2rem;
-      color: #d6336c;
-      animation: floatText 4s ease-in-out infinite alternate;
-      text-align: center;
-      width: 100%;
-      max-width: 600px;
-      margin-bottom: 30px;
-      z-index: 10;
-    }
-
-    @keyframes floatText {
-      from { transform: scale(1); }
-      to { transform: scale(1.05); }
+      font-size: 1.7rem;
     }
 
     .hint-box {
-      background: #fff8fc;
-      border-radius: 30px;
-      padding: 0.7rem 1.2rem;
-      color: #d6336c;
-      font-weight: 600;
       font-size: 0.9rem;
-      text-align: center;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 0 12px rgba(255, 105, 180, 0.3);
-      border: 2px dashed pink;
-      position: relative;
-    }
-
-    .hint-box::before {
-      content: "☁️";
-      font-size: 1.2rem;
-      position: absolute;
-      left: -20px;
-      top: -10px;
-    }
-
-    .image-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 4rem;
-      z-index: 5;
-    }
-
-    .image-wrapper {
-      position: relative;
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .image-wrapper:hover {
-      transform: scale(1.1);
+      padding: 0.6rem 1rem;
     }
 
     .sweet-note {
-      position: absolute;
-      bottom: -35px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: rgba(255, 192, 203, 0.9);
-      color: #800040;
-      padding: 6px 12px;
-      border-radius: 10px;
-      font-size: 0.85rem;
-      opacity: 0;
-      transition: opacity 0.3s;
-      font-family: 'Poppins', sans-serif;
-      text-align: center;
-      white-space: nowrap;
+      font-size: 0.8rem;
     }
 
-    .image-wrapper:hover .sweet-note {
-      opacity: 1;
+    #play-song-btn {
+      font-size: 0.95rem;
+      padding: 0.6rem 1.2rem;
     }
-
-    .floating-img {
-      width: 80vw;
-      max-width: 250px;
-      height: auto;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      border-radius: 20px;
-      box-shadow: 0 0 10px rgba(255, 105, 180, 0.4);
-      animation: floatImg 6s ease-in-out infinite alternate;
-    }
-
-    @keyframes floatImg {
-      0% { transform: translateY(0px) rotate(0deg); }
-      100% { transform: translateY(-20px) rotate(1deg); }
-    }
-
-    .heart {
-      position: absolute;
-      font-size: 14px;
-      color: pink;
-      animation: floatHeart 10s linear infinite;
-    }
-
-.static-heart {
-  position: absolute;
-  opacity: 0.15;
-  z-index: 0;
-  pointer-events: none;
-  user-select: none;
-}
-
-.music-button-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-  width: 100%;
-}
-
-#play-song-btn {
-  background-color: #d6336c;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  font-family: 'Poppins', sans-serif;
-}
-
-#play-song-btn:hover {
-  background-color: #c2185b;
-}
-
-@media (max-width: 600px) {
-  #play-song-btn {
-    font-size: 0.95rem;
-    padding: 0.6rem 1.2rem;
   }
-}
 
-
-    @keyframes floatHeart {
-      0% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100vh);
-        opacity: 0;
-      }
+  @media (max-width: 480px) {
+    .floating-img {
+      max-width: 85%;
     }
 
+    .sweet-note {
+      font-size: 0.75rem;
+      bottom: -30px;
+    }
 
-  </style>
+    .hint-box {
+      margin-bottom: 1.2rem;
+    }
+
+    .image-container {
+      gap: 2rem;
+    }
+
+    .floating-msg {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+  }
+</style>
+
 </head>
 <body>
 <audio id="bg-music"  loop>
@@ -241,7 +277,7 @@
 
 <div class="image-wrapper">
   <img class="floating-img" src="chat4.jpg.jpg" style="animation-delay: 3s;">
-  <div class="sweet-note">The way you love me when i am angry with you 😩🤌🌹</div>
+  <div class="sweet-note">They you love me when i am angry with you 😩🤌🌹</div>
 </div>
 
 <div class="image-wrapper">
