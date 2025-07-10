@@ -103,14 +103,10 @@
   z-index: 2;
 }
 
-  .image-wrapper {
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-bottom: 3rem; /* space between image blocks */
+
+.image-wrapper.show-note .sweet-note {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .sweet-note {
@@ -121,17 +117,27 @@
   font-size: 0.85rem;
   font-family: 'Poppins', sans-serif;
   text-align: center;
-  margin-top: -20px; /* this pulls the note up */
+  margin-top: -20px;
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
   z-index: 2;
 }
 
+/* Show on click */
 .image-wrapper.show-note .sweet-note {
   opacity: 1;
   pointer-events: auto;
 }
+
+/* Show on hover (for desktop/laptop) */
+@media (hover: hover) {
+  .image-wrapper:hover .sweet-note {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
 
   .floating-img {
     width: 80vw;
@@ -406,6 +412,13 @@
     }
   });
 
+  const imageWrappers = document.querySelectorAll('.image-wrapper');
+
+  imageWrappers.forEach(wrapper => {
+    wrapper.addEventListener('click', () => {
+      wrapper.classList.toggle('show-note');
+    });
+  });
 
 
   </script>
