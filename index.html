@@ -81,54 +81,63 @@
       animation: floatIn 7s ease-in-out forwards;
     }
 
-    .floating-chat {
+ .floating-chat {
   position: absolute;
   width: 140px;
   border-radius: 20px;
   box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
-  z-index: 3;
+  z-index: 2;
+  transition: transform 0.3s ease;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Tilting toward the letter */
-.chat1, .chat3, .chat5 {
-  transform: rotate(8deg); /* Left side - clockwise */
+/* Tilted inward */
+.floating-chat.chat1 { top: 20px; left: -80px; transform: rotate(-8deg); }
+.floating-chat.chat2 { top: 200px; right: -80px; transform: rotate(7deg); }
+.floating-chat.chat3 { top: 500px; left: -90px; transform: rotate(-9deg); }
+.floating-chat.chat4 { top: 800px; right: -90px; transform: rotate(6deg); }
+.floating-chat.chat5 { top: 1100px; left: -70px; transform: rotate(-7deg); }
+
+.chat-hint {
+  position: absolute;
+  top: -25px;
+  left: -60px;
+  color: #ff69b4;
+  font-size: 14px;
+  transform: rotate(-6deg);
+  z-index: 3;
 }
-.chat2, .chat4 {
-  transform: rotate(-8deg); /* Right side - counterclockwise */
+
+/* On smaller screens */
+@media (max-width: 768px) {
+  .floating-chat {
+    width: 100px;
+    position: absolute;
+  }
+
+  .floating-chat.chat1 { top: 20px; left: 5px; transform: rotate(-6deg); }
+  .floating-chat.chat2 { top: 180px; right: 5px; transform: rotate(5deg); }
+  .floating-chat.chat3 { top: 400px; left: 5px; transform: rotate(-7deg); }
+  .floating-chat.chat4 { top: 620px; right: 5px; transform: rotate(6deg); }
+  .floating-chat.chat5 { top: 840px; left: 5px; transform: rotate(-5deg); }
+
+  .chat-hint {
+    top: -20px;
+    left: 10px;
+    font-size: 12px;
+  }
+}
+
+@keyframes floatSide {
+  0%, 100% { transform: translateY(0) rotate(var(--rotate)); }
+  50% { transform: translateY(-5px) rotate(var(--rotate)); }
+}
+
+.floating-chat {
+  animation: floatSide 4s ease-in-out infinite;
 }
 
 
-    .zoomed-chat {
-      position: fixed !important;
-      top: 50% !important;
-      left: 50% !important;
-      transform: translate(-50%, -50%) scale(2) !important;
-      z-index: 1000 !important;
-      box-shadow: 0 0 30px rgba(0,0,0,0.6);
-    }
-
-    /* Floating chats beside letter */
-    .chat1 { top: 100px; left: -160px; }
-    .chat2 { top: 400px; right: -160px; }
-    .chat3 { top: 700px; left: -160px; }
-    .chat4 { top: 1000px; right: -160px; }
-    .chat5 { top: 1300px; left: -160px; }
-
-    /* Mobile support */
-    @media (max-width: 768px) {
-      .floating-chat {
-        width: 80px;
-        position: absolute;
-      }
-
-      .chat1 { top: 100px; left: -90px; }
-      .chat2 { top: 400px; right: -90px; }
-      .chat3 { top: 700px; left: -90px; }
-      .chat4 { top: 1000px; right: -90px; }
-      .chat5 { top: 1300px; left: -90px; }
-    }
 
     @keyframes floatIn {
       0% { opacity: 0; transform: translate(-50%, -60%) scale(0.5); }
@@ -229,8 +238,8 @@
   <button class="surprise-button" onclick="window.open('surprise.html', '_blank')">Click for a Surprise 🎁</button>
 
   <!-- Floating WhatsApp Chats beside the letter -->
+   <div class="chat-label chat1-label">Tap the image to read this 💌</div>
   <img src="chat1.jpg.jpg" class="floating-chat chat1" alt="Chat 1">
-  <div class="chat-label chat1-label">Tap the image to read this 💌</div>
   <img src="chat2.jpg.jpg" class="floating-chat chat2" alt="Chat 2">
   <img src="chat3.jpg.jpg" class="floating-chat chat3" alt="Chat 3">
   <img src="chat4.jpg.jpg" class="floating-chat chat4" alt="Chat 4">
