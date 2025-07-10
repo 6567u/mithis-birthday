@@ -14,11 +14,13 @@
       overflow-x: hidden;
       position: relative;
     }
+
     h1 {
       font-family: 'Great Vibes', cursive;
       text-align: center;
       color: #d6336c;
     }
+
     .container {
       padding: 2rem;
       text-align: center;
@@ -26,13 +28,14 @@
       border-radius: 20px;
       margin: 2rem auto;
       max-width: 900px;
-      transition: filter 0.5s ease;
       position: relative;
       z-index: 2;
     }
+
     .blurred {
       filter: blur(4px);
     }
+
     .letter {
       max-width: 800px;
       margin: 2rem auto;
@@ -42,12 +45,15 @@
       box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
       line-height: 1.8;
       font-size: 1.1rem;
+      position: relative;
     }
+
     .countdown {
       font-size: 1.5rem;
       color: #c2185b;
       margin: 2rem 0;
     }
+
     .surprise-button, .music-button {
       background-color: #ff69b4;
       border: none;
@@ -58,6 +64,7 @@
       cursor: pointer;
       margin-top: 2rem;
     }
+
     .message-float {
       position: fixed;
       top: 50%;
@@ -74,9 +81,9 @@
       animation: floatIn 7s ease-in-out forwards;
     }
 
-.floating-chat {
+    .floating-chat {
   position: absolute;
-  width: 160px;
+  width: 140px;
   border-radius: 20px;
   box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
   z-index: 3;
@@ -84,49 +91,44 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Positioning with spacing from edges */
-.floating-chat.chat1 { top: 150px; left: 40px; transform: rotate(-6deg); }
-.floating-chat.chat2 { top: 420px; right: 40px; transform: rotate(7deg); }
-.floating-chat.chat3 { top: 700px; left: 50px; transform: rotate(-8deg); }
-.floating-chat.chat4 { top: 980px; right: 50px; transform: rotate(5deg); }
-.floating-chat.chat5 { top: 1350px; left: 40px; transform: rotate(-5deg); } /* moved away from center */
-
-/* ENLARGED view */
-.zoomed-chat {
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) scale(2) !important;
-  z-index: 1000 !important;
-  box-shadow: 0 0 30px rgba(0,0,0,0.6);
+/* Tilting toward the letter */
+.chat1, .chat3, .chat5 {
+  transform: rotate(8deg); /* Left side - clockwise */
+}
+.chat2, .chat4 {
+  transform: rotate(-8deg); /* Right side - counterclockwise */
 }
 
-.chat-hint {
-  position: absolute;
-  top: 120px; /* Slightly above chat1 */
-  left: 50px; /* Align with chat1 left position */
-  background: rgba(255, 255, 255, 0.9);
-  padding: 6px 12px;
-  border-radius: 15px;
-  font-size: 13px;
-  color: #d6336c;
-  font-family: 'Poppins', sans-serif;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-  z-index: 4;
-  animation: fadeBlink 2s infinite;
-}
 
-/* Optional animation to draw attention */
-@keyframes fadeBlink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
+    .zoomed-chat {
+      position: fixed !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) scale(2) !important;
+      z-index: 1000 !important;
+      box-shadow: 0 0 30px rgba(0,0,0,0.6);
+    }
 
-@keyframes floatY {
-  0%, 100% { transform: translateY(0) rotate(var(--tilt, 0deg)); }
-  50% { transform: translateY(-10px) rotate(var(--tilt, 0deg)); }
-}
+    /* Floating chats beside letter */
+    .chat1 { top: 100px; left: -160px; }
+    .chat2 { top: 400px; right: -160px; }
+    .chat3 { top: 700px; left: -160px; }
+    .chat4 { top: 1000px; right: -160px; }
+    .chat5 { top: 1300px; left: -160px; }
 
+    /* Mobile support */
+    @media (max-width: 768px) {
+      .floating-chat {
+        width: 80px;
+        position: absolute;
+      }
+
+      .chat1 { top: 100px; left: -90px; }
+      .chat2 { top: 400px; right: -90px; }
+      .chat3 { top: 700px; left: -90px; }
+      .chat4 { top: 1000px; right: -90px; }
+      .chat5 { top: 1300px; left: -90px; }
+    }
 
     @keyframes floatIn {
       0% { opacity: 0; transform: translate(-50%, -60%) scale(0.5); }
@@ -161,37 +163,56 @@
       display: none;
       margin-top: 1rem;
     }
+
     .volume-slider {
       width: 120px;
       vertical-align: middle;
       margin-left: 10px;
     }
+
+    .chat-label {
+  position: absolute;
+  font-size: 0.9rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #d6336c;
+  padding: 4px 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-weight: 500;
+  z-index: 4;
+  white-space: nowrap;
+}
+
+.chat1-label {
+  top: calc(150px - 30px); /* slightly above chat1 */
+  left: 40px;
+  transform: rotate(2deg);
+}
+
   </style>
 </head>
 <body>
 
-  <audio id="birthdayMusic" loop>
-    <source src="die-with-a-smile.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
+<audio id="birthdayMusic" loop>
+  <source src="die-with-a-smile.mp3" type="audio/mpeg" />
+</audio>
 
-  <div class="heart-bg" id="heartBackground"></div>
+<div class="heart-bg" id="heartBackground"></div>
 
-  <div class="container" id="mainContent">
-    <h1>Happy Birthday Mithi ❤️ (Bebo)</h1>
-    
-    <!-- Music Buttons -->
-    <button class="music-button" id="playButton" onclick="startMusic()">🎵 Play Music</button>
-    
-    <div class="volume-control" id="musicControls">
-      <button class="music-button" id="toggleBtn" onclick="toggleMusic()">⏸️ Pause</button>
-      <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1" onchange="changeVolume(this.value)" />
-    </div>
+<div class="container" id="mainContent">
+  <h1>Happy Birthday Mithi ❤️ (Bebo)</h1>
 
-    <div class="countdown" id="countdown"></div>
+  <button class="music-button" id="playButton" onclick="startMusic()">🎵 Play Music</button>
 
-    <div class="letter">
-      <!-- Original + Hinglish + Marriage section -->
+  <div class="volume-control" id="musicControls">
+    <button class="music-button" id="toggleBtn" onclick="toggleMusic()">⏸️ Pause</button>
+    <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1" onchange="changeVolume(this.value)" />
+  </div>
+
+  <div class="countdown" id="countdown"></div>
+
+  <div class="letter">
+     <!-- Original + Hinglish + Marriage section -->
       <p>Even though distance separates us, my love for you knows no boundaries. Every morning I wake up thinking of you, and every night I fall asleep with your name in my heart. Mithi, your smile has the power to light up my darkest days, and your voice is the most comforting melody I’ve ever known.</p>
       <p>There are times I close my eyes and imagine what it will feel like to finally hold your hand, to look into your eyes and say all these things face to face. Until that day comes, I will keep writing you letters like this, sending you my heart in every word, every beat, every breath I take.</p>
       <p>You’ve made me a better person, Bebo. You’ve taught me what real love feels like — the kind that’s patient, kind, and brave. No matter the miles between us, I carry you with me, always. On your birthday, I wish I could shower you with kisses and hugs, but instead, I’m sending all the love I have, wrapped in these simple words.</p>
@@ -203,114 +224,103 @@
       <p>Tumhara chehra ek tasveer jaisa hai, jise main har pal apne dil mein sambhal ke rakhta hoon. Aur woh smile... woh smile meri duniya ko roshan karti hai. Us ek muskaan mein mere din ki thakan chhup jaati hai.</p>
       <p>Kabhi kabhi lagta hai jaise hum do shehron mein nahi, do alag duniyaaon mein hain. Lekin phir tumhara pyaar mujhe yaad dilata hai ki humari feelings kitni strong hain. Yeh faasla sirf physical hai... dil se toh hum hamesha ek saath hain.</p>
       <p>Ek din aayega jab yeh distances sirf kahani ban jaayenge. Tab main tumhara haath pakadke, aankhon mein aankhon daalke yeh sab keh paunga... bina kisi screen ke beech mein. ❤️</p>
-
-      <!-- Marriage lines -->
-      <p>Bas ek hi khwaahish hai dil mein — ek din tumhe apna banaane ka, uss khoobsurat lamhe ka jo sirf hum dono ke liye ho. Main chahta hoon ki humari shaadi ek khwaab jaisi ho, jahan har cheez perfect ho — tum ek sundar bridal dress mein, aur main bas tumhari aankhon mein khud ko dekh raha hoon.</p>
-      <p>Main chahta hoon ke tumhare haathon mein mehndi ho aur uspe likha ho mera naam. Tumhare gajre ki khushboo se poori shaam mehka ho, aur jab tum mandap mein aao toh duniya ruk jaaye... sirf tum par nazar tik jaaye.</p>
-      <p>Shaadi sirf ek rasam nahi hogi, woh mere sapne ka sach hona hoga — jahan main tumhe wada doon ki chahe kuch bhi ho, main hamesha tumhara rahunga. Har muskurahat, har aansu, har din — sab kuch main tumhare saath jeena chahta hoon.</p>
-      <p>Tumhara haath pakad ke, tumhare naam se jud kar, main is zindagi ka har pal tumhare saath bitaana chahta hoon. Mithi, meri zindagi ka sabse khoobsurat din wahi hoga jab tum meri dulhan banogi. 💍❤️</p>
-    </div>
-
-    <button class="surprise-button" onclick="window.open('surprise.html', '_blank')">Click for a Surprise 🎁</button>
   </div>
 
-  <!-- Floating WhatsApp Chats -->
-<img src="chat1.jpg.jpg" class="floating-chat chat1" alt="Chat 1">
-<div class="chat-hint">Click chat to read 🥺💌</div>
-<img src="chat2.jpg.jpg" class="floating-chat chat2" alt="Chat 2">
-<img src="chat3.jpg.jpg" class="floating-chat chat3" alt="Chat 3">
-<img src="chat4.jpg.jpg" class="floating-chat chat4" alt="Chat 4">
-<img src="chat5.jpg.jpg" class="floating-chat chat5" alt="Chat 5">
+  <button class="surprise-button" onclick="window.open('surprise.html', '_blank')">Click for a Surprise 🎁</button>
 
+  <!-- Floating WhatsApp Chats beside the letter -->
+  <img src="chat1.jpg.jpg" class="floating-chat chat1" alt="Chat 1">
+  <div class="chat-label chat1-label">Tap the image to read this 💌</div>
+  <img src="chat2.jpg.jpg" class="floating-chat chat2" alt="Chat 2">
+  <img src="chat3.jpg.jpg" class="floating-chat chat3" alt="Chat 3">
+  <img src="chat4.jpg.jpg" class="floating-chat chat4" alt="Chat 4">
+  <img src="chat5.jpg.jpg" class="floating-chat chat5" alt="Chat 5">
+</div>
 
-  <script>
-    function startMusic() {
-      const music = document.getElementById('birthdayMusic');
-      const playBtn = document.getElementById('playButton');
-      const controls = document.getElementById('musicControls');
+<script>
+  function startMusic() {
+    const music = document.getElementById('birthdayMusic');
+    const playBtn = document.getElementById('playButton');
+    const controls = document.getElementById('musicControls');
+    music.play();
+    playBtn.style.display = 'none';
+    controls.style.display = 'block';
+  }
 
+  function toggleMusic() {
+    const music = document.getElementById('birthdayMusic');
+    const toggleBtn = document.getElementById('toggleBtn');
+    if (music.paused) {
       music.play();
-      playBtn.style.display = 'none';
-      controls.style.display = 'block';
+      toggleBtn.innerText = "⏸️ Pause";
+    } else {
+      music.pause();
+      toggleBtn.innerText = "▶️ Play";
     }
+  }
 
-    function toggleMusic() {
-      const music = document.getElementById('birthdayMusic');
-      const toggleBtn = document.getElementById('toggleBtn');
+  function changeVolume(value) {
+    const music = document.getElementById('birthdayMusic');
+    music.volume = value;
+  }
 
-      if (music.paused) {
-        music.play();
-        toggleBtn.innerText = "⏸️ Pause";
-      } else {
-        music.pause();
-        toggleBtn.innerText = "▶️ Play";
-      }
+  // Countdown to 27 July 2025
+  const targetDate = new Date("2025-07-27T00:00:00").getTime();
+  const countdownEl = document.getElementById("countdown");
+
+  const interval = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    if (distance <= 0) {
+      clearInterval(interval);
+      countdownEl.innerHTML = "🎉 It's her birthday today! 🎉";
+      triggerCelebration();
+    } else {
+      countdownEl.innerHTML = `Countdown to her birthday: ${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
+  }, 1000);
 
-    function changeVolume(value) {
-      const music = document.getElementById('birthdayMusic');
-      music.volume = value;
-    }
+  function triggerCelebration() {
+    const main = document.getElementById('mainContent');
+    main.classList.add('blurred');
 
-    // Countdown to 27 July 2025
-    const targetDate = new Date("2025-07-27T00:00:00").getTime();
-    const countdownEl = document.getElementById("countdown");
+    const msg = document.createElement("div");
+    msg.className = "message-float";
+    msg.innerHTML = "Even miles apart, your love is the spark that lights up my world. Happy Birthday, my Mithi.";
+    document.body.appendChild(msg);
 
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
+    setTimeout(() => {
+      msg.remove();
+      main.classList.remove('blurred');
+    }, 7000);
+  }
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      if (distance <= 0) {
-        clearInterval(interval);
-        countdownEl.innerHTML = "🎉 It's her birthday today! 🎉";
-        triggerCelebration();
-      } else {
-        countdownEl.innerHTML = `Countdown to her birthday: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-      }
-    }, 1000);
-
-    function triggerCelebration() {
-      const main = document.getElementById('mainContent');
-      main.classList.add('blurred');
-
-      const msg = document.createElement("div");
-      msg.className = "message-float";
-      msg.innerHTML = "Even miles apart, your love is the spark that lights up my world. Happy Birthday, my Mithi.";
-      document.body.appendChild(msg);
-
-      setTimeout(() => {
-        msg.remove();
-        main.classList.remove('blurred');
-      }, 7000);
-    }
-
-    // Floating hearts
-    const heartContainer = document.getElementById("heartBackground");
-    for (let i = 0; i < 100; i++) {
-      const heart = document.createElement("div");
-      heart.classList.add("heart");
-      heart.innerText = "💗";
-      heart.style.left = Math.random() * 100 + "%";
-      heart.style.top = Math.random() * 1000 + "px";
-      heart.style.fontSize = (Math.random() * 10 + 10) + "px";
-      heartContainer.appendChild(heart);
-    }
+  // Floating hearts
+  const heartContainer = document.getElementById("heartBackground");
+  for (let i = 0; i < 100; i++) {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerText = "💗";
+    heart.style.left = Math.random() * 100 + "%";
+    heart.style.top = Math.random() * 1000 + "px";
+    heart.style.fontSize = (Math.random() * 10 + 10) + "px";
+    heartContainer.appendChild(heart);
+  }
 
   // Zoom on click
   const chatImages = document.querySelectorAll('.floating-chat');
-
   chatImages.forEach(img => {
     img.addEventListener('click', () => {
       img.classList.toggle('zoomed-chat');
     });
   });
+</script>
 
-
-  </script>
 </body>
 </html>
