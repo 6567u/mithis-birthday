@@ -81,62 +81,6 @@
       animation: floatIn 7s ease-in-out forwards;
     }
 
-    .floating-chat {
-      position: absolute;
-      width: 140px;
-      border-radius: 20px;
-      box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
-      z-index: 2;
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-
-    /* Tilted inward */
-    .floating-chat.chat1 { top: 20px; left: -80px; transform: rotate(-8deg); }
-    .floating-chat.chat2 { top: 200px; right: -80px; transform: rotate(7deg); }
-    .floating-chat.chat3 { top: 500px; left: -90px; transform: rotate(-9deg); }
-    .floating-chat.chat4 { top: 800px; right: -90px; transform: rotate(6deg); }
-    .floating-chat.chat5 { top: 1100px; left: -70px; transform: rotate(-7deg); }
-
-    .chat-hint {
-      position: absolute;
-      top: -25px;
-      left: -60px;
-      color: #ff69b4;
-      font-size: 14px;
-      transform: rotate(-6deg);
-      z-index: 3;
-    }
-
-    /* On smaller screens */
-    @media (max-width: 768px) {
-      .floating-chat {
-        width: 100px;
-        position: absolute;
-      }
-
-      .floating-chat.chat1 { top: 20px; left: 5px; transform: rotate(-6deg); }
-      .floating-chat.chat2 { top: 180px; right: 5px; transform: rotate(5deg); }
-      .floating-chat.chat3 { top: 400px; left: 5px; transform: rotate(-7deg); }
-      .floating-chat.chat4 { top: 620px; right: 5px; transform: rotate(6deg); }
-      .floating-chat.chat5 { top: 840px; left: 5px; transform: rotate(-5deg); }
-
-      .chat-hint {
-        top: -20px;
-        left: 10px;
-        font-size: 12px;
-      }
-    }
-
-    @keyframes floatSide {
-      0%, 100% { transform: translateY(0) rotate(var(--rotate)); }
-      50% { transform: translateY(-5px) rotate(var(--rotate)); }
-    }
-
-    .floating-chat {
-      animation: floatSide 4s ease-in-out infinite;
-    }
-
     @keyframes floatIn {
       0% { opacity: 0; transform: translate(-50%, -60%) scale(0.5); }
       10% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
@@ -176,53 +120,6 @@
       vertical-align: middle;
       margin-left: 10px;
     }
-
-    .chat-label {
-      position: absolute;
-      font-size: 0.9rem;
-      background-color: rgba(255, 255, 255, 0.9);
-      color: #d6336c;
-      padding: 4px 10px;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      font-weight: 500;
-      z-index: 4;
-      white-space: nowrap;
-    }
-
-    .chat1-label {
-      top: calc(150px - 30px);
-      left: 40px;
-      transform: rotate(2deg);
-    }
-
-    .zoomed-chat {
-      position: fixed !important;
-      top: 50% !important;
-      left: 50% !important;
-      transform: translate(-50%, -50%) scale(1.5) !important;
-      z-index: 1001 !important;
-      border-radius: 20px;
-      max-width: 90%;
-      max-height: 90%;
-      animation: zoomIn 0.4s ease;
-    }
-
-    .zoom-overlay {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0,0,0,0.4);
-      z-index: 1000;
-    }
-
-    @keyframes zoomIn {
-      from { transform: translate(-50%, -50%) scale(0.7); opacity: 0; }
-      to { transform: translate(-50%, -50%) scale(1.5); opacity: 1; }
-    }
   </style>
 </head>
 <body>
@@ -246,28 +143,19 @@
   <div class="countdown" id="countdown"></div>
 
   <div class="letter">
-     <!-- Original + Hinglish + Marriage section -->
-      <p>Even though distance separates us, my love for you knows no boundaries. Every morning I wake up thinking of you, and every night I fall asleep with your name in my heart. Mithi, your smile has the power to light up my darkest days, and your voice is the most comforting melody I’ve ever known.</p>
-      <p>There are times I close my eyes and imagine what it will feel like to finally hold your hand, to look into your eyes and say all these things face to face. Until that day comes, I will keep writing you letters like this, sending you my heart in every word, every beat, every breath I take.</p>
-      <p>You’ve made me a better person, Bebo. You’ve taught me what real love feels like — the kind that’s patient, kind, and brave. No matter the miles between us, I carry you with me, always. On your birthday, I wish I could shower you with kisses and hugs, but instead, I’m sending all the love I have, wrapped in these simple words.</p>
-      <p>Happy Birthday, my moonlight. I hope this year brings you closer to your dreams, and to me. I love you more than words can ever express — in this life and every life to come. 💖</p>
+    <p>Even though distance separates us, my love for you knows no boundaries. Every morning I wake up thinking of you, and every night I fall asleep with your name in my heart. Mithi, your smile has the power to light up my darkest days, and your voice is the most comforting melody I’ve ever known.</p>
+    <p>There are times I close my eyes and imagine what it will feel like to finally hold your hand, to look into your eyes and say all these things face to face. Until that day comes, I will keep writing you letters like this, sending you my heart in every word, every beat, every breath I take.</p>
+    <p>You’ve made me a better person, Bebo. You’ve taught me what real love feels like — the kind that’s patient, kind, and brave. No matter the miles between us, I carry you with me, always. On your birthday, I wish I could shower you with kisses and hugs, but instead, I’m sending all the love I have, wrapped in these simple words.</p>
+    <p>Happy Birthday, my moonlight. I hope this year brings you closer to your dreams, and to me. I love you more than words can ever express — in this life and every life to come. 💖</p>
 
-      <!-- Hinglish addition -->
-      <p>Distance hamesha tough hota hai, lekin tumhari yaadein har waqt mere saath hoti hain. Raat ko sone se pehle tumhara chehra meri aankhon ke saamne hota hai, aur subah uthte hi sabse pehle tumhari muskurahat yaad aati hai.</p>
-      <p>Tumhari aankhon mein ek ajeeb si shanti hai, jaise poori duniya ruk jaati ho. Jab bhi tum mujhe dekhti ho—even video call par—ek second ke liye saans lena bhool jaata hoon.</p>
-      <p>Tumhara chehra ek tasveer jaisa hai, jise main har pal apne dil mein sambhal ke rakhta hoon. Aur woh smile... woh smile meri duniya ko roshan karti hai. Us ek muskaan mein mere din ki thakan chhup jaati hai.</p>
-      <p>Kabhi kabhi lagta hai jaise hum do shehron mein nahi, do alag duniyaaon mein hain. Lekin phir tumhara pyaar mujhe yaad dilata hai ki humari feelings kitni strong hain. Yeh faasla sirf physical hai... dil se toh hum hamesha ek saath hain.</p>
-      <p>Ek din aayega jab yeh distances sirf kahani ban jaayenge. Tab main tumhara haath pakadke, aankhon mein aankhon daalke yeh sab keh paunga... bina kisi screen ke beech mein. ❤️</p>
+    <p>Distance hamesha tough hota hai, lekin tumhari yaadein har waqt mere saath hoti hain. Raat ko sone se pehle tumhara chehra meri aankhon ke saamne hota hai, aur subah uthte hi sabse pehle tumhari muskurahat yaad aati hai.</p>
+    <p>Tumhari aankhon mein ek ajeeb si shanti hai, jaise poori duniya ruk jaati ho. Jab bhi tum mujhe dekhti ho—even video call par—ek second ke liye saans lena bhool jaata hoon.</p>
+    <p>Tumhara chehra ek tasveer jaisa hai, jise main har pal apne dil mein sambhal ke rakhta hoon. Aur woh smile... woh smile meri duniya ko roshan karti hai. Us ek muskaan mein mere din ki thakan chhup jaati hai.</p>
+    <p>Kabhi kabhi lagta hai jaise hum do shehron mein nahi, do alag duniyaaon mein hain. Lekin phir tumhara pyaar mujhe yaad dilata hai ki humari feelings kitni strong hain. Yeh faasla sirf physical hai... dil se toh hum hamesha ek saath hain.</p>
+    <p>Ek din aayega jab yeh distances sirf kahani ban jaayenge. Tab main tumhara haath pakadke, aankhon mein aankhon daalke yeh sab keh paunga... bina kisi screen ke beech mein. ❤️</p>
   </div>
 
   <button class="surprise-button" onclick="window.open('surprise.html', '_blank')">Click for a Surprise 🎁</button>
-
-  <div class="chat-label chat1-label">Tap the image to read this 💌</div>
-  <img src="chat1.jpg.jpg" class="floating-chat chat1" alt="Chat 1">
-  <img src="chat2.jpg.jpg" class="floating-chat chat2" alt="Chat 2">
-  <img src="chat3.jpg.jpg" class="floating-chat chat3" alt="Chat 3">
-  <img src="chat4.jpg.jpg" class="floating-chat chat4" alt="Chat 4">
-  <img src="chat5.jpg.jpg" class="floating-chat chat5" alt="Chat 5">
 </div>
 
 <script>
@@ -345,27 +233,6 @@
     heart.style.fontSize = (Math.random() * 10 + 10) + "px";
     heartContainer.appendChild(heart);
   }
-
-  // Zoom and overlay
-  const chatImages = document.querySelectorAll('.floating-chat');
-  chatImages.forEach(img => {
-    img.addEventListener('click', () => {
-      const isZoomed = img.classList.contains('zoomed-chat');
-      document.querySelectorAll('.zoomed-chat').forEach(el => el.classList.remove('zoomed-chat'));
-      document.querySelectorAll('.zoom-overlay').forEach(el => el.remove());
-
-      if (!isZoomed) {
-        const overlay = document.createElement("div");
-        overlay.classList.add("zoom-overlay");
-        overlay.addEventListener("click", () => {
-          img.classList.remove("zoomed-chat");
-          overlay.remove();
-        });
-        document.body.appendChild(overlay);
-        img.classList.add("zoomed-chat");
-      }
-    });
-  });
 </script>
 
 </body>
