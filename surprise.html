@@ -143,9 +143,35 @@
         opacity: 0;
       }
     }
+
+
   </style>
 </head>
 <body>
+<audio id="bg-music" autoplay loop>
+  <source src="Bebo-Main-Bebo.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<button onclick="document.getElementById('bg-music').play()" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: pink;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(255, 105, 180, 0.5);
+  z-index: 1000;
+">
+  🎵 Play Music
+</button>
+
+
+
   <div class="floating-msg">
     You are the most precious gift in my life, Bebo. 💖<br>
     Even from afar, my heart finds its home in you.
@@ -154,6 +180,7 @@
   <div class="hint-box">
     Tap on each picture to reveal a sweet message! 💌
   </div>
+
 
   <div class="image-container">
     <div class="image-wrapper">
@@ -254,6 +281,23 @@
       heart.style.animationDuration = 5 + Math.random() * 10 + "s";
       document.body.appendChild(heart);
     }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const music = document.getElementById('bg-music');
+
+    // Set volume (0.0 to 1.0)
+    music.volume = 0.4; // 40% volume
+
+    // Set start time in seconds (e.g., 10 seconds in)
+    music.currentTime = 181;
+
+    // Some browsers require user interaction to start playback
+    const playMusic = () => {
+      music.play().catch(() => {}); // silently fail if blocked
+    };
+    document.body.addEventListener('click', playMusic, { once: true });
+  });
+
   </script>
 </body>
 </html>
