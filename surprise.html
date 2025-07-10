@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surprise for Bebo 🎁</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background-color: #fff0f5;
+      overflow-x: hidden;
+      overflow-y: auto;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .floating-msg {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem;
+      color: #d6336c;
+      animation: floatText 4s ease-in-out infinite alternate;
+      text-align: center;
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 30px;
+      z-index: 10;
+    }
+
+    @keyframes floatText {
+      from { transform: scale(1); }
+      to { transform: scale(1.05); }
+    }
+
+    .hint-box {
+      background: #fff8fc;
+      border-radius: 30px;
+      padding: 0.7rem 1.2rem;
+      color: #d6336c;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 12px rgba(255, 105, 180, 0.3);
+      border: 2px dashed pink;
+      position: relative;
+    }
+
+    .hint-box::before {
+      content: "☁️";
+      font-size: 1.2rem;
+      position: absolute;
+      left: -20px;
+      top: -10px;
+    }
+
+    .image-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 4rem;
+      z-index: 5;
+    }
+
+    .image-wrapper {
+      position: relative;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .image-wrapper:hover {
+      transform: scale(1.1);
+    }
+
+    .sweet-note {
+      position: absolute;
+      bottom: -35px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(255, 192, 203, 0.9);
+      color: #800040;
+      padding: 6px 12px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .image-wrapper:hover .sweet-note {
+      opacity: 1;
+    }
+
+    .floating-img {
+      width: 80vw;
+      max-width: 250px;
+      height: auto;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(255, 105, 180, 0.4);
+      animation: floatImg 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatImg {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(-20px) rotate(1deg); }
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 14px;
+      color: pink;
+      animation: floatHeart 10s linear infinite;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-msg">
+    You are the most precious gift in my life, Bebo. 💖<br>
+    Even from afar, my heart finds its home in you.
+  </div>
+
+  <div class="hint-box">
+    Tap on each picture to reveal a sweet message! 💌
+  </div>
+
+  <div class="image-container">
+    <div class="image-wrapper">
+      <img class="floating-img" src="WhatsApp Image 2025-07-08 at 20.08.31.jpg" style="animation-delay: 0s;">
+      <div class="sweet-note">Your smile is my favorite sunshine ☀️</div>
+    </div>
+    <div class="image-wrapper">
+      <img class="floating-img" src="WhatsApp Image 2025-07-08 at 20.08.32.jpg" style="animation-delay: 2s;">
+      <div class="sweet-note">Distance means nothing when love is true ❤️</div>
+    </div>
+    <div class="image-wrapper">
+      <img class="floating-img" src="WhatsApp Image 2025-07-08 at 20.08.33 (1).jpg" style="animation-delay: 4s;">
+      <div class="sweet-note">Forever yours, my Bebo 💕</div>
+    </div>
+    <div class="image-wrapper">
+      <img class="floating-img" src="WhatsApp Image 2025-07-08 at 20.08.33.jpg" style="animation-delay: 4s;">
+      <div class="sweet-note">you are my Nibbi , i am your Nibba 💕</div>
+    </div><div class="image-wrapper">
+      <img class="floating-img" src="WhatsApp Image 2025-07-08 at 20.34.19 (1) (1).jpg" style="animation-delay: 4s;">
+      <div class="sweet-note">I am lost in those beautiful eyes 👀 💕</div>
+    </div><div class="image-wrapper">
+      <img class="floating-img" src="WhatsApp Image 2025-07-08 at 20.34.19 (2).jpg" style="animation-delay: 4s;">
+      <div class="sweet-note">Ami tomake bhalobasi 💕😽</div>
+    </div>
+  </div>
+
+  <script>
+    // Floating small hearts in background
+    for (let i = 0; i < 50; i++) {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = "💖";
+      heart.style.left = Math.random() * 100 + "%";
+      heart.style.top = Math.random() * 100 + "%";
+      heart.style.fontSize = Math.random() * 10 + 10 + "px";
+      heart.style.animationDuration = 5 + Math.random() * 10 + "s";
+      document.body.appendChild(heart);
+    }
+  </script>
+</body>
+</html>
