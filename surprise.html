@@ -122,6 +122,17 @@
       animation: floatHeart 10s linear infinite;
     }
 
+.static-heart {
+  position: absolute;
+  opacity: 0.15;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+
+
+
     @keyframes floatHeart {
       0% {
         transform: translateY(0);
@@ -167,9 +178,71 @@
       <img class="floating-img" src="WhatsApp Image 2025-07-08 at 20.34.19 (2).jpg" style="animation-delay: 4s;">
       <div class="sweet-note">Ami tomake bhalobasi 💕😽</div>
     </div>
+    <!-- Chat Memory Section Header -->
+<div style="text-align: center; font-size: 1.3rem; font-weight: bold; color: #c2185b; margin-top: 3rem;">
+  Our Sweet Memories 💬
+</div>
+
+<!-- Chat-style images -->
+<div class="image-wrapper">
+  <img class="floating-img" src="chat1.jpg.jpg" style="animation-delay: 1s;">
+  <div class="sweet-note">The best day of my life 😩❤️</div>
+</div>
+
+<div class="image-wrapper">
+  <img class="floating-img" src="chat2.jpg.jpg" style="animation-delay: 2s;">
+  <div class="sweet-note">I proposed you first 😾😾</div>
+</div>
+
+<div class="image-wrapper">
+  <img class="floating-img" src="chat3.jpg.jpg" style="animation-delay: 3s;">
+  <div class="sweet-note">"Typing..." still gives me butterflies 🦋</div>
+</div>
+
+<div class="image-wrapper">
+  <img class="floating-img" src="chat4.jpg.jpg" style="animation-delay: 3s;">
+  <div class="sweet-note">They you love me when i am angry with you 😩🤌🌹</div>
+</div>
+
+<div class="image-wrapper">
+  <img class="floating-img" src="chat5.jpg.jpg" style="animation-delay: 3s;">
+  <div class="sweet-note">When you become childish its feels like you are my little baby 😩❤️😽</div>
+</div>
+
   </div>
 
+  <!-- Decorative background hearts (static) -->
+<div class="static-heart" style="top: 20%; left: 5%;">💗</div>
+<div class="static-heart" style="top: 35%; right: 10%;">💞</div>
+<div class="static-heart" style="top: 60%; left: 8%;">💘</div>
+<div class="static-heart" style="top: 75%; right: 12%;">💓</div>
+
+
   <script>
+  // Existing floating hearts (keep untouched)
+  for (let i = 0; i < 50; i++) {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.textContent = "💖";
+    heart.style.left = Math.random() * 100 + "%";
+    heart.style.top = Math.random() * 100 + "%";
+    heart.style.fontSize = Math.random() * 10 + 10 + "px";
+    heart.style.animationDuration = 5 + Math.random() * 10 + "s";
+    document.body.appendChild(heart);
+  }
+
+  // NEW: Add 30 static (non-moving) hearts in the background
+  for (let i = 0; i < 30; i++) {
+    const staticHeart = document.createElement("div");
+    staticHeart.classList.add("static-heart");
+    staticHeart.textContent = ["💗", "💞", "💘", "💓", "💝"][Math.floor(Math.random() * 5)];
+    staticHeart.style.left = Math.random() * 100 + "%";
+    staticHeart.style.top = Math.random() * 100 + "%";
+    staticHeart.style.fontSize = Math.random() * 30 + 10 + "px";
+    document.body.appendChild(staticHeart);
+  }
+
+
     // Floating small hearts in background
     for (let i = 0; i < 50; i++) {
       const heart = document.createElement("div");
